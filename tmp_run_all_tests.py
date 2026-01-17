@@ -1,3 +1,11 @@
+"""Quick integration smoke tests for core modules.
+
+Runs a short sequence exercising dataset generation, neuron,
+classifier, fitter (if available), and payroll utilities.
+
+Usage: python tmp_run_all_tests.py
+"""
+
 import numpy as np
 
 print('Running quick integration tests...')
@@ -20,8 +28,6 @@ print(neuron(X[:3], w, b, activation='relu'))
 
 # Test classifier
 from classifier import binary_classifier
-w_all = np.array([1.0, -1.0, 0.0])  # last is bias here (but X has 3 cols -> need 4)
-# Create a proper weight vector length 4 (2 features + bias) for our X (3 cols)
 w_all = np.array([1.0, -1.0, 0.0])  # X has 3 columns (x1,x2,1) -> w length 3, bias passed as tuple
 probs, preds = binary_classifier((w_all, 0.0), X, activation='sigmoid')
 print('\nbinary_classifier probs[:5]:', np.round(probs[:5].reshape(-1),4).tolist())

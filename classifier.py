@@ -1,3 +1,9 @@
+"""Higher-level classifier helpers.
+
+This module provides `binary_classifier` which wraps the single-neuron
+primitive into a convenient interface accepting multiple weight formats.
+"""
+
 import numpy as np
 from neuron import neuron
 

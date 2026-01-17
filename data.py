@@ -1,3 +1,9 @@
+"""Dataset helpers.
+
+Small utilities to produce synthetic datasets used by demos and tests.
+Currently provides an XOR-like generator for toy experiments.
+"""
+
 import numpy as np
 
 

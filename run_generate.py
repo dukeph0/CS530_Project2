@@ -1,3 +1,9 @@
+"""Utility: generate XOR-like dataset and offer a small CLI demo.
+
+This module provides a dataset generator used by the demo scripts
+and includes a tiny `__main__` example to print a few samples.
+"""
+
 import numpy as np
 
 def generate_xor_dataset(n_samples=100, noise=0.0, seed=None):

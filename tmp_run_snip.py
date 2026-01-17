@@ -1,3 +1,8 @@
+"""Quick demo: generate a small XOR dataset and print shapes/samples.
+
+Usage: python tmp_run_snip.py
+"""
+
 from CodeSnippetOne import generate_xor_dataset
 X, y = generate_xor_dataset(n_samples=10, noise=0.1, seed=42)
 print('X.shape =', X.shape)

@@ -1,3 +1,8 @@
+"""Demo: fit a single neuron and print fit + classifier summaries.
+
+Usage: python tmp_run_classifier.py
+"""
+
 from CodeSnippetOne import generate_xor_dataset, fit_single_neuron, binary_classifier
 import numpy as np
 

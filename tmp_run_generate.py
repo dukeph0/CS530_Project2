@@ -1,3 +1,8 @@
+"""Small script to print a few rows of the XOR dataset.
+
+Usage: python tmp_run_generate.py
+"""
+
 from data import generate_xor_dataset
 
 print('Generating 10 samples (noise=0.1, seed=42)')

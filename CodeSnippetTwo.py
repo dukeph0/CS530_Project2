@@ -1,3 +1,10 @@
+"""Payroll helper: compute payroll summary for a single employee.
+
+This module exposes `process_employee_data` used in demos and tests
+to compute gross, overtime, bonus, taxes, and net pay for an employee.
+"""
+
+
 def process_employee_data(emp_id, hours_worked, pay_rate, dept):
     """Compute payroll for a single employee and return a summary dict.
 

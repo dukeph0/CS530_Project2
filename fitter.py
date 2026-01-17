@@ -1,3 +1,9 @@
+"""Fitting utilities for single-neuron classifiers.
+
+Provides `fit_single_neuron` which uses a local SciPy import to
+optimize a single-neuron model for a small dataset.
+"""
+
 import numpy as np
 from neuron import neuron
 

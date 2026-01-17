@@ -1,3 +1,8 @@
+"""Run fitter, extract weights, and show classifier outputs/accuracy.
+
+Usage: python tmp_run_classifier_weights.py
+"""
+
 import numpy as np
 from data import generate_xor_dataset
 from fitter import fit_single_neuron

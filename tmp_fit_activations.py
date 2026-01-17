@@ -1,3 +1,8 @@
+"""Fit a single neuron with different activations and print summaries.
+
+Usage: python tmp_fit_activations.py
+"""
+
 import numpy as np
 from data import generate_xor_dataset
 from fitter import fit_single_neuron

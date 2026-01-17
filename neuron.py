@@ -1,3 +1,9 @@
+"""Single-neuron activation primitives.
+
+Contains a stable sigmoid `a` and a `neuron` helper supporting
+`sigmoid` and `relu` activations used by the classifier utilities.
+"""
+
 import numpy as np
 
 
