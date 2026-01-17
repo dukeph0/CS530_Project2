@@ -11,7 +11,9 @@ This is a convenience script used during development and can be removed
 or integrated into the main CLI as needed.
 """
 
-from CodeSnippetOne import generate_xor_dataset, fit_single_neuron
+from data import generate_xor_dataset
+from fitter import fit_single_neuron
+
 
 X, y = generate_xor_dataset(n_samples=50, noise=0.05, seed=1)
 

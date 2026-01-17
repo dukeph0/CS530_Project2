@@ -3,7 +3,9 @@
 Usage: python tmp_run_classifier.py
 """
 
-from CodeSnippetOne import generate_xor_dataset, fit_single_neuron, binary_classifier
+from data import generate_xor_dataset
+from fitter import fit_single_neuron
+from classifier import binary_classifier
 import numpy as np
 
 # Generate dataset matching previous run
