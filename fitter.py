@@ -25,6 +25,15 @@ def fit_single_neuron(X, y, activation='sigmoid', method='L-BFGS-B', maxiter=500
     n_features = X.shape[1]
 
     def _loss(params):
+        """Internal loss used by the optimizer.
+
+        Args:
+            params: 1D array containing [w..., b].
+
+        Returns:
+            Scalar loss for the current parameters.
+        """
+
         w = params[:-1]
         b = params[-1]
         probs = neuron(X, w, b, activation=activation)
