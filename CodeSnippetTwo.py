@@ -1,95 +1,86 @@
 def process_employee_data(emp_id, hours_worked, pay_rate, dept):
-    total_pay = hours_worked * hourly_rate
-    
-    employee_name = emp_id + " Employee"
-    
-    print "Starting calculation for " + employee_name
-    
-    if hours_worked > 40
-        # Bug 5: Wrong indentation
-        overtime_hours = hours_worked - 40
-        # Bug 6: Using undefined variable
-        overtime_pay = Overtime_hours * pay_rate * 1.5
-    else:
-        overtime_pay = 0
-    
-    efficiency = total_pay / hours_worked
-    
-    TotalPay = total_pay + overtime_pay
-    
-    log_entry = employee_name + TotalPay + " calculated"
-    
-    if dept = "Sales":
-        bonus = TotalPay * 0.1
-    elif dept == "IT"
-        bonus = TotalPay * 0.05
-    
-    final_salary = TotalPay + bonus
-    
-    counter = 0
-    while counter < 10:
-        counter -= 1  # Bug 13: Counter decreases instead of increases
-    
-    dept_codes = ["S", "I", "M"]
-    dept_index = 5
-    dept_code = dept_codes[dept_index]
-    
-    status = "Active" + 1
-    
-    if final_salary > 0:
-        if final_salary > 0:
-            if final_salary > 0
-                payment_status = "Due"
-    
-    record_type = Active
-    
-    if emp_id = 1000:
-        special_rate = pay_rate * 2
-    
-    message = "Processing complete for
-    
-    validate_data(emp_id)
-    
-    for i in range(5):
-        i = i + 1
-        total_pay = total_pay  # Bug 22: No actual operation
-    
-    rates = {"Sales": 1.0, "IT": 1.1}
-    dept_rate = rates[pay_rate]
-    
-    tax_rate = "0.25"
-    taxes = final_salary * tax_rate
-    
-    return final_salary
-    
-    net_pay = final_salary - taxes
-    
-    if net_pay < 0:
-        net_pay == 0  # Bug 26: Assignment instead of comparison
-    
-    for hours in hours_worked:
-        print(hours)
-    
-    dept_name = dept.uppercase()
-    
-    adjustment = calculate_adjustment()
-    
-    is_active = "True"
-    if is_active:
-        process_payment = True
-    
-    file = open("log.txt")
-    file.write(log_entry)
-    
-    avg_hourly = total_pay / 0
-    
-    result = {
-        "id": emp_id,
-        "pay": final_salary,
-        "dept": dept_code,
-        "status": payment_status
-    }
-    
-    return result  # Bug 34: Inconsistent return (some cases return float, others dict)
+    """Compute payroll for a single employee and return a summary dict.
 
-print(process_employee_data("1001", "40", 15.0, Sales))
+    The function handles overtime (time-and-a-half for hours > 40), a small
+    department-based bonus, flat tax rate, and returns a consistent result
+    dictionary containing gross, tax, and net pay values plus metadata.
+
+    Args:
+        emp_id: Employee identifier (string or int).
+        hours_worked: Number of hours worked (int, float, or numeric string).
+        pay_rate: Hourly pay rate (float).
+        dept: Department name (string), case-insensitive.
+
+    Returns:
+        dict with keys: id, name, dept, dept_code, gross_pay, overtime_pay,
+        bonus, taxes, net_pay, status.
+    """
+    # Normalize and validate inputs
+    emp_id = str(emp_id)
+    try:
+        hours = float(hours_worked)
+    except Exception:
+        raise ValueError('hours_worked must be convertible to float')
+    pay_rate = float(pay_rate)
+    dept = str(dept).strip()
+
+    # Compute regular and overtime hours
+    regular_hours = min(hours, 40.0)
+    overtime_hours = max(0.0, hours - 40.0)
+
+    regular_pay = regular_hours * pay_rate
+    overtime_pay = overtime_hours * pay_rate * 1.5
+    gross_pay = regular_pay + overtime_pay
+
+    # Department codes and bonus rates
+    dept_map = {
+        'sales': ('S', 0.10),
+        'it': ('I', 0.05),
+        'marketing': ('M', 0.03)
+    }
+    key = dept.lower()
+    dept_code, bonus_rate = dept_map.get(key, ('U', 0.0))
+    bonus = gross_pay * bonus_rate
+
+    final_salary = gross_pay + bonus
+
+    # Taxes and net pay
+    tax_rate = 0.25
+    taxes = final_salary * tax_rate
+    net_pay = final_salary - taxes
+    if net_pay < 0:
+        net_pay = 0.0
+
+    payment_status = 'Due' if final_salary > 0 else 'None'
+
+    employee_name = f"{emp_id} Employee"
+    log_entry = f"{employee_name}: gross={gross_pay:.2f}, overtime={overtime_pay:.2f}, bonus={bonus:.2f}, net={net_pay:.2f}\n"
+
+    # Write a brief log entry (append)
+    try:
+        with open('log.txt', 'a') as fh:
+            fh.write(log_entry)
+    except Exception:
+        # Don't fail the payroll calculation if logging fails
+        pass
+
+    result = {
+        'id': emp_id,
+        'name': employee_name,
+        'dept': dept,
+        'dept_code': dept_code,
+        'gross_pay': round(gross_pay, 2),
+        'overtime_pay': round(overtime_pay, 2),
+        'bonus': round(bonus, 2),
+        'taxes': round(taxes, 2),
+        'net_pay': round(net_pay, 2),
+        'status': payment_status,
+    }
+
+    return result
+
+
+if __name__ == '__main__':
+    # Example usage
+    summary = process_employee_data('1001', 40, 15.0, 'Sales')
+    print(summary)

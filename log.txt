@@ -1,0 +1,1 @@
+1001 Employee: gross=600.00, overtime=0.00, bonus=60.00, net=495.00
